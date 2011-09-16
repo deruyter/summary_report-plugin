@@ -1,0 +1,75 @@
+
+<j:jelly xmlns:j="jelly:core"        xmlns:l="/lib/layout"
+xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
+
+    <!-- *************** -->
+    <!-- Import librairy -->
+    <!-- *************** -->
+    
+    <!-- Sorttable lib -->
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/sorttable/sorttable.js"></script>
+
+   <!-- Css -->
+    <link type="text/css" href="${rootURL}/plugin/summary_report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
+
+    <!-- JQuery lib -->
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+    
+    <!-- Cookies lib -->
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/douglascrockford-JSON-js/json2.js"></script>
+
+
+    <!-- *************** -->
+    <!--     Main        -->
+    <!-- *************** -->
+    
+    <table>
+        <tr>
+            <td>
+                <j:set var="projectname" value="${from.getProjectName()}"/>
+                <j:set var="buildnumber" value="${from.getBuildNumber()}"/>
+                
+                <!-- For each file .xml-->
+                <j:forEach var="a" items="${it.report.section}" indexVar="indexA">
+
+                    <h2 style="color:${a.fontColor};">${a.sectionName}</h2>
+
+                    <!-- For each object in the section -->
+                    <j:forEach var="b" items="${a.objectList}" indexVar="indexB">
+
+                        <!-- If the object is a table -->
+                        <j:if test="${b.status == 'table'}">
+                            <st:include page="/hudson/plugins/summary_report/ACIPluginBuildAction/componentTable.jelly" />
+                        </j:if>
+
+                        <!-- If the object is a field -->
+                        <j:if test="${b.status == 'field'}">
+                            <st:include page="/hudson/plugins/summary_report/ACIPluginBuildAction/componentField.jelly" />
+                        </j:if>
+
+
+                        <!-- If the object is an accordion -->
+                        <j:if test="${b.status == 'accordion'}">
+                            <st:include page="/hudson/plugins/summary_report/ACIPluginBuildAction/componentAccordion.jelly" />
+                        </j:if>
+
+                         <!-- If the object is a tab -->
+                        <j:if test="${b.status == 'tabs'}">
+                            <st:include page="/hudson/plugins/summary_report/ACIPluginBuildAction/componentTabs.jelly" />
+                        </j:if>
+
+                    </j:forEach>
+
+                </j:forEach>
+                
+                <!-- For each fileError-->
+                <j:forEach var="c" items="${from.getFileError()}" indexVar="indexC">
+                    <h2 style="color:${c[0]};">${c[1]}: <a style="color:${c[2]};" href="${c[4]}">${c[5]}</a></h2>
+                </j:forEach>
+            </td>
+        </tr>
+    </table>
+
+</j:jelly>

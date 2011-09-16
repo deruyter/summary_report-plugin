@@ -1,0 +1,118 @@
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
+    <script type="text/javascript">
+
+
+
+        <!-- Function who create accordion -->
+        function create_accordion(accordionName){
+
+            $( function()
+            {
+                var cookieName = accordionName;
+
+                <!-- In default we close all accordion, we fix index to 10 -->
+                var var_active = 10;
+                
+                var cookies_id = $.cookies.get(cookieName);
+
+                if (cookies_id == cookieName){
+                    var_active = 0;
+                }
+
+               $(accordionName).accordion( {
+
+                    active: var_active,
+                    collapsible: true,
+                    animated : false,
+                    autoHeight : false,
+
+                    change: function( e, ui ) {
+                            <!-- If accordion is not open (10), we create cookie to save state -->
+                            if (cookies_id != cookieName){
+                                 $.cookies.set( cookieName, cookieName);
+                            }else{
+                                 $.cookies.del(cookieName);
+                            }
+                    }
+                } );
+            } );
+
+        }
+        
+
+    </script>
+    
+    <!-- Create one accordion -->
+    <script type="text/javascript">
+        create_accordion('#accordion${projectname}'+${buildnumber}+${indexA}+${indexB});
+
+    </script>
+
+    <div id="accordion${projectname}${buildnumber}${indexA}${indexB}">
+        <h3>
+            <a href="">${b.accordionName}</a>
+        </h3>
+
+        <div>
+
+            <j:forEach var="n" items="${b.objectList}">
+
+                <!-- if the object is a table -->
+                <j:if test="${n.status == 'table'}">
+
+                    <j:set var="sorttable" value="sortable_nosort"/>
+
+                    <!-- if b.sorttable == yes -->
+                    <j:if test="${n.sorttable}">
+                        <j:set var="sorttable" value="sortable"/>
+                    </j:if>
+
+                    <table class="${sorttable}" border="1" cellspacing="0">
+                            <j:forEach var="o" items="${n.trList}">
+                                <tr>
+                                    <j:forEach var="p" items="${o.tdList}">
+                                        <td style="width:${p.width}; background-color:${p.bgColor};"
+                                            align ="${p.align}">
+                                            <j:if test="${p.tdValue != null}">
+                                               <j:set var="phref" value="${p.href}"/>
+                                               <j:if test="${p.href != null}" >
+                                                    <j:set var="phref" value="${buildn}${p.href}"/>
+                                                </j:if>
+                                                <p>
+                                                    <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
+                                                       href="${phref}">
+                                                       ${p.tdValue}
+                                                    </a>
+                                                </p>
+                                            </j:if>
+                                            <j:if test="${p.cdata != null}">
+                                                <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">
+                                                    ${p.cdata}
+                                                </pre>
+                                            </j:if>
+                                        </td>
+                                    </j:forEach>
+                                </tr>
+                            </j:forEach>
+                        </table>
+                </j:if>
+
+                <!-- if the object is a field -->
+                <j:if test="${n.status == 'field'}">
+                   <j:set var="phref" value="${n.href}"/>
+                   <j:if test="${n.href != null}" >
+                        <j:set var="phref" value="${buildn}${n.href}"/>
+                    </j:if>
+                    <!--<p><b>${n.fieldName}:</b> <a href="${phref}">${n.fieldValue}</a></p>-->
+                    <p style="color:${n.titleColor};"><b>${n.fieldName}: </b><a style="color:${n.detailColor};" href="${phref}">${n.fieldValue}</a></p>
+                    <pre>${n.cdata}</pre>
+                </j:if>
+
+            </j:forEach>
+
+        </div>
+
+    </div>
+
+</j:jelly>

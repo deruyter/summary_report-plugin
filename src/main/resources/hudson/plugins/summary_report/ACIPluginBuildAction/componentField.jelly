@@ -1,0 +1,9 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
+    <j:set var="phref" value="${b.href}"/>
+    <j:if test="${b.href != null}" >
+        <j:set var="phref" value="${buildn}${b.href}"/>
+    </j:if>
+    <p style="color:${b.titleColor};"><b>${b.fieldName}: </b><a style="color:${b.detailColor};" href="${phref}">${b.fieldValue}</a></p>
+    <pre>${b.cdata}</pre>
+</j:jelly>
+
