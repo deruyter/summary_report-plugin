@@ -1,19 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.jvnet.hudson.plugins</groupId>
+ <parent>
+    <groupId>org.jenkins-ci.plugins</groupId>
     <artifactId>plugin</artifactId>
-    <version>1.343</version><!-- which version of Hudson is this plugin built against? -->
+    <version>1.430</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>summary_report</groupId>
   <artifactId>summary_report</artifactId>
   <name>Hudson Summary Display plugin</name>
-  <version>1.14</version>
+  <version>1.16</version>
   <packaging>hpi</packaging>
 
-  <!-- get every artifact through maven.glassfish.org, which proxies all the artifacts that we need -->
   <repositories>
     <repository>
       <id>m.g.o-public</id>
@@ -21,10 +20,14 @@
     </repository>
   </repositories>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>m.g.o-public</id>
-      <url>http://maven.glassfish.org/content/groups/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.8</version>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

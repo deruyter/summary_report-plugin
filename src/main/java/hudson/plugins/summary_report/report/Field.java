@@ -70,7 +70,8 @@ public class Field {
      * @param cdata the cdata to set
      */
     public void setCdata(String cdata){    
-        this.cdata = cdata;
+        if (this.cdata == null) this.cdata = cdata;
+        else this.cdata = this.cdata + cdata;
     }
 
     /**
