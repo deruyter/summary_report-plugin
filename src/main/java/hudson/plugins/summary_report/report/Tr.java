@@ -25,29 +25,29 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
-
 public class Tr {
-    private ArrayList<Td> tdList;
-    
-    public Tr(){
-        tdList = new ArrayList<Td>();
-    }
+	private ArrayList<Td> tdList;
 
-    /**
-     * @return the tdList
-     */
-    public ArrayList<Td> getTdList(){
-        return tdList;
-    }
+	public Tr() {
+		tdList = new ArrayList<Td>();
+	}
 
-    /**
-     * @param tdList the tdList to set
-     */
-    public void setTdList(ArrayList<Td> tdList){
-        this.tdList = tdList;
-    }
+	/**
+	 * @return the tdList
+	 */
+	public ArrayList<Td> getTdList() {
+		return tdList;
+	}
 
-    public void addTd(Td td) {
-        this.tdList.add(td);
-    }
+	/**
+	 * @param tdList
+	 *            the tdList to set
+	 */
+	public void setTdList(ArrayList<Td> tdList) {
+		this.tdList = tdList;
+	}
+
+	public void addTd(Td td) {
+		this.tdList.add(td);
+	}
 }
