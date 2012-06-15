@@ -28,17 +28,32 @@ import hudson.model.AbstractProject;
 import hudson.tasks.BuildStepDescriptor;
 import hudson.tasks.Publisher;
 
+/**
+ * Plugin connection to jenkins.
+ */
 @Extension
 public class ACIPluginDescriptor extends BuildStepDescriptor<Publisher> {
 
+	/**
+	 * Get plugin description.
+	 */
 	public ACIPluginDescriptor() {
 		super(ACIPluginPublisher.class);
 	}
 
-	public boolean isApplicable(Class<? extends AbstractProject> jobType) {
+	/**
+	 * Get plugin availability.
+	 * @param jobType
+	 * 		Type of Job to we want this plugin to apply
+	 */
+	public boolean isApplicable(
+			final Class<? extends AbstractProject> jobType) {
 		return true;
 	}
 
+	/**
+	 * Get Name of the plugin.
+	 */
 	@Override
 	public String getDisplayName() {
 		return "Publish ACI reports";

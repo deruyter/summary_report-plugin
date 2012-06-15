@@ -44,64 +44,81 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * XML Parser Class.
+ */
 public class ParserXml {
 
     private static Section resultat;
-    private static URI xml_path;
+    private static URI xmlPath;
 
     /**
-     * @param xml URI Path to the xml file
+     * XML Parser.
+     *
+     * @param xml
+     * 		URI Path to the xml file
      */
     public ParserXml(final URI xml) {
-        xml_path = xml;
+        xmlPath = xml;
     }
 
-    public String parse(){
-        try{
+    /**
+     * Parsing entry point.
+     */
+    public String parse() {
+        try {
             final SAXParserFactory fabrique = SAXParserFactory.newInstance();
             final SAXParser parseur = fabrique.newSAXParser();
             final DefaultHandler gestionnaire = new Analyse();
-            parseur.parse(new File(xml_path), gestionnaire);
-        }catch (ParserConfigurationException pce){
+            parseur.parse(new File(xmlPath), gestionnaire);
+        } catch (ParserConfigurationException pce) {
             return pce.toString();
-        }catch (SAXException sax){
+        } catch (SAXException sax) {
             return sax.toString();
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             return ioe.toString();
         }
         return "";
     }
 
 
+    /**
+     * Return result of the section.
+     */
     public Section result() {
         return resultat;
     }
 
+    /**
+     * Sub class for xml analysis.
+     */
     static class Analyse extends DefaultHandler {
 
         private Section section;
-        private Tabs tmp_tabs;
-        private Tab tmp_tab;
-        private Field tmp_field;
-        private Table tmp_table;
-        private Tr tmp_tr;
-        private Td tmp_td;
-        private Accordion tmp_accordion;
+        private Tabs tmpTabs;
+        private Tab tmpTab;
+        private Field tmpField;
+        private Table tmpTable;
+        private Tr tmpTr;
+        private Td tmpTd;
+        private Accordion tmpAccordion;
 
         /**
          * FLAGS
          */
-        private boolean f_section = false;
-        private boolean f_tabs = false;
-        private boolean f_tab = false;
-        private boolean f_field = false;
-        private boolean f_table = false;
-        private boolean f_tr = false;
-        private boolean f_td = false;
-        private boolean f_accordion = false;
-        
+        private boolean fSection = false;
+        private boolean fTabs = false;
+        private boolean fTab = false;
+        private boolean fField = false;
+        private boolean fTable = false;
+        private boolean fTr = false;
+        private boolean fTd = false;
+        private boolean fAccordion = false;
 
 
+        /**
+         * Main entry point.
+         */
         public Analyse() {
             super();
             section = new Section();
@@ -114,12 +131,12 @@ public class ParserXml {
             final String lecture = new String(ch, start, length);
 
             // if the string doesn't contain only empty charaters
-            if(!lecture.matches("^\\s*$")){
-                if (f_field && length>1){
-                    tmp_field.setCdata(lecture);
+            if (!lecture.matches("^\\s*$")) {
+                if (fField && length > 1) {
+                    tmpField.setCdata(lecture);
                 }
-                if (f_td && length>1){
-                    tmp_td.setCdata(lecture);
+                if (fTd && length > 1) {
+                    tmpTd.setCdata(lecture);
                 }
             }
        }
@@ -133,88 +150,90 @@ public class ParserXml {
         public void endElement(final String uri, final String localName,
                 final String qName) throws SAXException {
 
-            if (qName.equals("section") && f_section) {
-                f_section = false;
-            } else if (qName.equals("accordion") && f_accordion) {
-                f_accordion = false;
-                section.addObject(tmp_accordion);
-            } else if (qName.equals("field") && f_accordion && f_field) {
-                f_field = false;
-                tmp_accordion.addObject(tmp_field);
-            } else if (qName.equals("table") && f_accordion && f_table) {
-                f_table = false;
-                tmp_accordion.addObject(tmp_table);
-            } else if (qName.equals("tabs")  && f_tabs) {
-                f_tabs = false;
-                section.addObject(tmp_tabs);
-            } else if (qName.equals("tab")  && f_tabs && f_tab) {
-                f_tab = false;
-                tmp_tabs.addTab(tmp_tab);
-            } else if (qName.equals("field") && f_tabs && f_tab && f_field) {
-                f_field = false;
-                tmp_tab.addObject(tmp_field);
-            } else if (qName.equals("table") && f_tabs && f_tab && f_table) {
-                f_table = false;
-                tmp_tab.addObject(tmp_table);
-            } else if (qName.equals("field")  && f_field) {
-                f_field = false;
-                section.addObject(tmp_field);
-            } else if (qName.equals("table")  && f_table) {
-                f_table = false;
-                section.addObject(tmp_table);
-            } else if (qName.equals("tr") && f_tr) {
-                f_tr = false;
-                tmp_table.addTr(tmp_tr);
-            } else if (qName.equals("td") && f_td) {
-                f_td = false;
-                tmp_tr.addTd(tmp_td);
+            if (qName.equals("section") && fSection) {
+                fSection = false;
+            } else if (qName.equals("accordion") && fAccordion) {
+                fAccordion = false;
+                section.addObject(tmpAccordion);
+            } else if (qName.equals("field") && fAccordion && fField) {
+                fField = false;
+                tmpAccordion.addObject(tmpField);
+            } else if (qName.equals("table") && fAccordion && fTable) {
+                fTable = false;
+                tmpAccordion.addObject(tmpTable);
+            } else if (qName.equals("tabs")  && fTabs) {
+                fTabs = false;
+                section.addObject(tmpTabs);
+            } else if (qName.equals("tab")  && fTabs && fTab) {
+                fTab = false;
+                tmpTabs.addTab(tmpTab);
+            } else if (qName.equals("field") && fTabs && fTab && fField) {
+                fField = false;
+                tmpTab.addObject(tmpField);
+            } else if (qName.equals("table") && fTabs && fTab && fTable) {
+                fTable = false;
+                tmpTab.addObject(tmpTable);
+            } else if (qName.equals("field")  && fField) {
+                fField = false;
+                section.addObject(tmpField);
+            } else if (qName.equals("table")  && fTable) {
+                fTable = false;
+                section.addObject(tmpTable);
+            } else if (qName.equals("tr") && fTr) {
+                fTr = false;
+                tmpTable.addTr(tmpTr);
+            } else if (qName.equals("td") && fTd) {
+                fTd = false;
+                tmpTr.addTd(tmpTd);
             }
         }
 
         @Override
-        public void startElement(final String uri, final String localName, final String qName, final Attributes attributes) throws SAXException {
-            if (qName.equals("section") ) {
-                f_section = true;
+        public void startElement(final String uri, final String localName,
+        		final String qName, final Attributes attributes)
+        				throws SAXException {
+            if (qName.equals("section")) {
+                fSection = true;
                 section.setSectionName(attributes.getValue("name"));
                 section.setLine(attributes.getValue("line"));
                 section.setColumn(attributes.getValue("column"));
                 section.setFontColor(attributes.getValue("fontcolor"));
             } else if (qName.equals("tabs")) {
-                f_tabs = true;
-                tmp_tabs = new Tabs();
+                fTabs = true;
+                tmpTabs = new Tabs();
             } else if (qName.equals("tab")) {
-                f_tab = true;
-                tmp_tab = new Tab();
-                tmp_tab.setTabName(attributes.getValue("name"));
+                fTab = true;
+                tmpTab = new Tab();
+                tmpTab.setTabName(attributes.getValue("name"));
             } else if (qName.equals("accordion")) {
-                f_accordion = true;
-                tmp_accordion = new Accordion();
-                tmp_accordion.setAccordionName(attributes.getValue("name"));
+                fAccordion = true;
+                tmpAccordion = new Accordion();
+                tmpAccordion.setAccordionName(attributes.getValue("name"));
             } else if (qName.equals("field")) {
-                f_field = true;
-                tmp_field = new Field();
-                tmp_field.setFieldName(attributes.getValue("name"));
-                tmp_field.setFieldValue(attributes.getValue("value"));
-                tmp_field.setHref(attributes.getValue("href"));
-                tmp_field.setTitleColor(attributes.getValue("titlecolor"));
-                tmp_field.setDetailColor(attributes.getValue("detailcolor"));
+                fField = true;
+                tmpField = new Field();
+                tmpField.setFieldName(attributes.getValue("name"));
+                tmpField.setFieldValue(attributes.getValue("value"));
+                tmpField.setHref(attributes.getValue("href"));
+                tmpField.setTitleColor(attributes.getValue("titlecolor"));
+                tmpField.setDetailColor(attributes.getValue("detailcolor"));
             } else if (qName.equals("table")) {
-                f_table = true;
-                tmp_table = new Table();
-                tmp_table.setSorttable(attributes.getValue("sorttable"));
+                fTable = true;
+                tmpTable = new Table();
+                tmpTable.setSorttable(attributes.getValue("sorttable"));
             } else if (qName.equals("tr")) {
-                f_tr = true;
-                tmp_tr = new Tr();
+                fTr = true;
+                tmpTr = new Tr();
             } else if (qName.equals("td")) {
-                f_td = true;
-                tmp_td = new Td();
-                tmp_td.setTdValue(attributes.getValue("value"));
-                tmp_td.setBgColor(attributes.getValue("bgcolor"));
-                tmp_td.setFontColor(attributes.getValue("fontcolor"));
-                tmp_td.setFontAttribute(attributes.getValue("fontattribute"));
-                tmp_td.setHref(attributes.getValue("href"));
-                tmp_td.setAlign(attributes.getValue("align"));
-                tmp_td.setWidth(attributes.getValue("width"));
+                fTd = true;
+                tmpTd = new Td();
+                tmpTd.setTdValue(attributes.getValue("value"));
+                tmpTd.setBgColor(attributes.getValue("bgcolor"));
+                tmpTd.setFontColor(attributes.getValue("fontcolor"));
+                tmpTd.setFontAttribute(attributes.getValue("fontattribute"));
+                tmpTd.setHref(attributes.getValue("href"));
+                tmpTd.setAlign(attributes.getValue("align"));
+                tmpTd.setWidth(attributes.getValue("width"));
             }
         }
     }

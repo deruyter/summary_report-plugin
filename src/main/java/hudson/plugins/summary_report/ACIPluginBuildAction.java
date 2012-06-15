@@ -38,21 +38,45 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.kohsuke.stapler.StaplerProxy;
 import org.xml.sax.SAXException;
 
-public class ACIPluginBuildAction
-	implements Action, Serializable, StaplerProxy {
+/**
+ * Class describing action performed on build page.
+ */
+public class ACIPluginBuildAction implements Action,
+				Serializable, StaplerProxy {
 
 	/**
-	 * 
+	 * Id of the class.
 	 */
 	private static final long serialVersionUID = 1L;
+	/**
+	 * URL to access data.
+	 */
 	public static final String URL_NAME = "aciResult";
 	private AbstractBuild<?, ?> build;
 	private String result;
 	private Report report;
 	private ArrayList<ArrayList<String>> fileError;
 
-	public ACIPluginBuildAction(AbstractBuild<?, ?> build,
-			ArrayList<String> files) throws InterruptedException,
+	/**
+	 * Constructor.
+	 *
+	 * @param build
+	 *            The current build
+	 * @param files
+	 *            The current files
+	 * @throws InterruptedException
+	 *             Interruption
+	 * @throws ParserConfigurationException
+	 *             Exception in parser configuration
+	 * @throws SAXException
+	 *             Exception in XML parser
+	 * @throws URISyntaxException
+	 *             Exception in URL
+	 * @throws IOException
+	 *             Exception with I/Os
+	 */
+	public ACIPluginBuildAction(final AbstractBuild<?, ?> build,
+			final ArrayList<String> files) throws InterruptedException,
 			ParserConfigurationException, SAXException, URISyntaxException,
 			IOException {
 		this.build = build;
@@ -61,10 +85,10 @@ public class ACIPluginBuildAction
 
 		for (int i = 0; i < files.size(); i++) {
 
-			String current_report = files.get(i);
+			String currentReport = files.get(i);
 
 			String path = "file:" + build.getArtifactsDir().getAbsolutePath()
-					+ File.separatorChar + current_report;
+					+ File.separatorChar + currentReport;
 
 			URI xml = new URI(path);
 
@@ -75,61 +99,83 @@ public class ACIPluginBuildAction
 				this.report.addSection(parseur.result());
 			} else {
 				ArrayList<String> list = new ArrayList<String>();
-				list.add("#FF0000");// titleColor
-				list.add("Parsing File Error");// fieldName
-				list.add("#000000");// detailColor
+				list.add("#FF0000"); // titleColor
+				list.add("Parsing File Error"); // fieldName
+				list.add("#000000"); // detailColor
 
 				String str = build.getArtifactsDir().getName();
 				str = str.replace("archive", build.getNumber() + "/artifact");
 
-				list.add(str + File.separatorChar + current_report);// href
-																	// project
-																	// page
+				list.add(str + File.separatorChar + currentReport);
+				// href project page
 
 				str = build.getArtifactsDir().getName();
 				str = str.replace("archive", "artifact");
 
-				list.add(str + File.separatorChar + current_report);// href
-																	// build
-																	// page
+				list.add(str + File.separatorChar + currentReport);
+				// href build page
 
-				list.add("Cause : " + resParse);// fieldValue
+				list.add("Cause : " + resParse); // fieldValue
 				fileError.add(list);
 			}
 		}
 
 	}
 
+	/**
+	 * Get Report.
+	 */
 	public Report getReport() {
 		return report;
 	}
 
+	/**
+	 * Get Error File.
+	 */
 	public ArrayList<ArrayList<String>> getFileError() {
 		return fileError;
 	}
 
+	/**
+	 * Get Summary.
+	 */
 	public String getSummary() {
 		StringBuilder builder = new StringBuilder();
 		return builder.toString();
 	}
 
+	/**
+	 * Get Details.
+	 */
 	public String getDetails() {
 		StringBuilder builder = new StringBuilder();
 		return builder.toString();
 	}
 
+	/**
+	 * Get Result.
+	 */
 	public String getResult() {
 		return this.result;
 	}
 
+	/**
+	 * Get current build.
+	 */
 	AbstractBuild<?, ?> getBuild() {
 		return this.build;
 	}
 
+	/**
+	 * Get Target.
+	 */
 	public Object getTarget() {
 		return this.result;
 	}
 
+	/**
+	 * Get Previous result.
+	 */
 	String getPreviousResult() {
 		ACIPluginBuildAction previousAction = this.getPreviousAction();
 		String previousResult = null;
@@ -139,6 +185,9 @@ public class ACIPluginBuildAction
 		return previousResult;
 	}
 
+	/**
+	 * Get Previous action.
+	 */
 	ACIPluginBuildAction getPreviousAction() {
 		AbstractBuild<?, ?> previousBuild = this.build.getPreviousBuild();
 		if (previousBuild != null) {
@@ -147,12 +196,18 @@ public class ACIPluginBuildAction
 		return null;
 	}
 
+	/**
+	 * Get Project Name.
+	 */
 	public String getProjectName() {
 		String str = build.getParent().getName();
 		str = str.replace(".", "dot");
 		return str;
 	}
 
+	/**
+	 * Get Build Number.
+	 */
 	public int getBuildNumber() {
 		return build.getNumber();
 	}
@@ -160,18 +215,28 @@ public class ACIPluginBuildAction
 	/**
 	 * The three functions getIconFileName,getDisplayName,getUrlName create a
 	 * link to a new page with url : http://{root}/job/{job name}/URL_NAME for
-	 * the page of the build
+	 * the page of the build.
 	 */
 	public String getIconFileName() {
 		// return "/plugin/summary_report/icons/summary_report.png";
 		return null;
 	}
 
+	/**
+	 * The three functions getIconFileName,getDisplayName,getUrlName create a
+	 * link to a new page with url : http://{root}/job/{job name}/URL_NAME for
+	 * the page of the build.
+	 */
 	public String getDisplayName() {
 		// return "ACIAction";
 		return null;
 	}
 
+	/**
+	 * The three functions getIconFileName,getDisplayName,getUrlName create a
+	 * link to a new page with url : http://{root}/job/{job name}/URL_NAME for
+	 * the page of the build.
+	 */
 	public String getUrlName() {
 		// return URL_NAME;
 		return null;
