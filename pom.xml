@@ -78,8 +78,8 @@
 
   
   <scm>
-    <connection>scm:git:ssh://github.com/jenkinsci/summary_report.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/jenkinsci/summary_report.git</developerConnection>
+    <connection>scm:git:https://github.com/jenkinsci/summary_report.git</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/summary_report.git</developerConnection>
     <url>https://github.com/jenkinsci/summary_report</url>
   </scm>
 
