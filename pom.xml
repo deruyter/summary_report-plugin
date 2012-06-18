@@ -76,12 +76,6 @@
     </dependency>
   </dependencies>
 
-  <distributionManagement>
-    <repository>
-      <id>maven.jenkins-ci.org</id>
-      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
-    </repository>
-  </distributionManagement>
   
   <scm>
     <connection>scm:git:ssh://github.com/jenkinsci/summary_report.git</connection>
