@@ -23,6 +23,9 @@
  */
 package hudson.plugins.summary_report.report;
 
+/**
+ * Class responsible for a table column creation.
+ */
 public class Td {
 	private String tdValue;
 	private String bgColor;
@@ -33,12 +36,16 @@ public class Td {
 	private String align;
 	private String cdata;
 
+	/**
+	 * Constructor.
+	 */
 	public Td() {
 		this.width = "100";
 		this.align = "left";
 	}
 
 	/**
+	 * Get Column value.
 	 * @return the tdValue
 	 */
 	public String getTdValue() {
@@ -46,14 +53,16 @@ public class Td {
 	}
 
 	/**
+	 * Set Column value.
 	 * @param tdValue
 	 *            the tdValue to set
 	 */
-	public void setTdValue(String tdValue) {
+	public void setTdValue(final String tdValue) {
 		this.tdValue = tdValue;
 	}
 
 	/**
+	 * Get background color.
 	 * @return the bgColor
 	 */
 	public String getBgColor() {
@@ -61,14 +70,16 @@ public class Td {
 	}
 
 	/**
+	 * Set background color.
 	 * @param bgColor
 	 *            the bgColor to set
 	 */
-	public void setBgColor(String bgColor) {
+	public void setBgColor(final String bgColor) {
 		this.bgColor = bgColor;
 	}
 
 	/**
+	 * Get font color.
 	 * @return the fontColor
 	 */
 	public String getFontColor() {
@@ -76,14 +87,16 @@ public class Td {
 	}
 
 	/**
+	 * Set font color.
 	 * @param fontColor
 	 *            the fontColor to set
 	 */
-	public void setFontColor(String fontColor) {
+	public void setFontColor(final String fontColor) {
 		this.fontColor = fontColor;
 	}
 
 	/**
+	 * Get font attribute.
 	 * @return the fontAttribute
 	 */
 	public String getFontAttribute() {
@@ -91,14 +104,16 @@ public class Td {
 	}
 
 	/**
+	 * Set font attribute.
 	 * @param fontAttribute
 	 *            the fontAttribute to set
 	 */
-	public void setFontAttribute(String fontAttribute) {
+	public void setFontAttribute(final String fontAttribute) {
 		this.fontAttribute = fontAttribute;
 	}
 
 	/**
+	 * Get Hyperlink value.
 	 * @return the ref
 	 */
 	public String getHref() {
@@ -106,14 +121,16 @@ public class Td {
 	}
 
 	/**
+	 * Set Hyperlink value.
 	 * @param href
 	 *            the ref to set
 	 */
-	public void setHref(String href) {
+	public void setHref(final String href) {
 		this.href = href;
 	}
 
 	/**
+	 * Get column width.
 	 * @return the width
 	 */
 	public String getWidth() {
@@ -121,14 +138,16 @@ public class Td {
 	}
 
 	/**
+	 * Set column width.
 	 * @param width
 	 *            the width to set
 	 */
-	public void setWidth(String width) {
+	public void setWidth(final String width) {
 		this.width = width;
 	}
 
 	/**
+	 * Get the alignment.
 	 * @return the align
 	 */
 	public String getAlign() {
@@ -136,14 +155,16 @@ public class Td {
 	}
 
 	/**
+	 * Set the alignment.
 	 * @param align
 	 *            the alignment to set
 	 */
-	public void setAlign(String align) {
+	public void setAlign(final String align) {
 		this.align = align;
 	}
 
 	/**
+	 * Get the cdata section.
 	 * @return the cdata
 	 */
 	public String getCdata() {
@@ -151,13 +172,15 @@ public class Td {
 	}
 
 	/**
+	 * Set cdata section.
 	 * @param cdata
 	 *            the cdata to set
 	 */
-	public void setCdata(String cdata) {
-		if (this.cdata == null)
+	public void setCdata(final String cdata) {
+		if (this.cdata == null) {
 			this.cdata = cdata;
-		else
+		} else {
 			this.cdata = this.cdata + cdata;
+		}
 	}
 }

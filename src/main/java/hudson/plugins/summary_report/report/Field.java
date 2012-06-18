@@ -23,6 +23,9 @@
  */
 package hudson.plugins.summary_report.report;
 
+/**
+ * Class responsible for a accordion creation.
+ */
 public class Field {
 
 	private String status;
@@ -33,11 +36,15 @@ public class Field {
 	private String titleColor;
 	private String detailColor;
 
+	/**
+	 * Constructor.
+	 */
 	public Field() {
 		status = "field";
 	}
 
 	/**
+	 * Get the status.
 	 * @return the status
 	 */
 	public String getStatus() {
@@ -45,15 +52,17 @@ public class Field {
 	}
 
 	/**
+	 * Set the status.
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
 
 	}
 
 	/**
+	 * Get Field Name.
 	 * @return the fieldName
 	 */
 	public String getFieldName() {
@@ -61,15 +70,17 @@ public class Field {
 	}
 
 	/**
+	 * Set the name of the field.
 	 * @param fieldName
-	 *            the fieldName to set
+	 * 		the fieldName to set
 	 */
-	public void setFieldName(String fieldName) {
+	public void setFieldName(final String fieldName) {
 		this.fieldName = fieldName;
 
 	}
 
 	/**
+	 * Get the value of the field.
 	 * @return the fieldValue
 	 */
 	public String getFieldValue() {
@@ -77,33 +88,38 @@ public class Field {
 	}
 
 	/**
+	 * Set the value of the field.
 	 * @param fieldValue
-	 *            the fieldValue to set
+	 *		the fieldValue to set
 	 */
-	public void setFieldValue(String fieldValue) {
+	public void setFieldValue(final String fieldValue) {
 		this.fieldValue = fieldValue;
 
 	}
 
 	/**
-	 * @return the cdata
+	 * Get cdata section of the field.
+	 * @return The cdata section
 	 */
 	public String getCdata() {
 		return cdata;
 	}
 
 	/**
+	 * Set cdata section of the field.
 	 * @param cdata
-	 *            the cdata to set
+	 * 		The cdata section to set
 	 */
-	public void setCdata(String cdata) {
-		if (this.cdata == null)
+	public void setCdata(final String cdata) {
+		if (this.cdata == null) {
 			this.cdata = cdata;
-		else
+		} else {
 			this.cdata = this.cdata + cdata;
+		}
 	}
 
 	/**
+	 * Get the hyperlink reference the field.
 	 * @return the ref
 	 */
 	public String getHref() {
@@ -111,14 +127,16 @@ public class Field {
 	}
 
 	/**
+	 * Set the hyperlink reference the field.
 	 * @param href
-	 *            the ref to set
+	 * 		the ref to set
 	 */
-	public void setHref(String href) {
+	public void setHref(final String href) {
 		this.href = href;
 	}
 
 	/**
+	 * Get the title color of the field.
 	 * @return the titleColor
 	 */
 	public String getTitleColor() {
@@ -126,14 +144,16 @@ public class Field {
 	}
 
 	/**
+	 * Set the title color of the field.
 	 * @param titleColor
-	 *            the titleColor to set
+	 *		The titleColor to set
 	 */
-	public void setTitleColor(String titleColor) {
+	public void setTitleColor(final String titleColor) {
 		this.titleColor = titleColor;
 	}
 
 	/**
+	 * Get the value color of the field.
 	 * @return the detailColor
 	 */
 	public String getDetailColor() {
@@ -141,10 +161,11 @@ public class Field {
 	}
 
 	/**
+	 * Set the title color of the field.
 	 * @param detailColor
-	 *            the detailColor to set
+	 * 		The detailColor to set
 	 */
-	public void setDetailColor(String detailColor) {
+	public void setDetailColor(final String detailColor) {
 		this.detailColor = detailColor;
 	}
 }

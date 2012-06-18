@@ -25,6 +25,9 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
+/**
+ * Class responsible for a section creation.
+ */
 public class Section {
 
 	private String sectionName;
@@ -33,11 +36,15 @@ public class Section {
 	private ArrayList<Object> objectList;
 	private String fontColor;
 
+	/**
+	 * Constructor.
+	 */
 	public Section() {
 		objectList = new ArrayList<Object>();
 	}
 
 	/**
+	 * Get the section name.
 	 * @return the sectionName
 	 */
 	public String getSectionName() {
@@ -45,14 +52,16 @@ public class Section {
 	}
 
 	/**
+	 * Set the section name.
 	 * @param sectionName
 	 *            the sectionName to set
 	 */
-	public void setSectionName(String sectionName) {
+	public void setSectionName(final String sectionName) {
 		this.sectionName = sectionName;
 	}
 
 	/**
+	 * Get the current line.
 	 * @return the line
 	 */
 	public String getLine() {
@@ -60,15 +69,17 @@ public class Section {
 	}
 
 	/**
+	 * Set the current line.
 	 * @param line
 	 *            the line to set
 	 */
-	public void setLine(String line) {
+	public void setLine(final String line) {
 		this.line = line;
 
 	}
 
 	/**
+	 * Get the current column.
 	 * @return the column
 	 */
 	public String getColumn() {
@@ -76,15 +87,17 @@ public class Section {
 	}
 
 	/**
+	 * Set the current column.
 	 * @param column
 	 *            the column to set
 	 */
-	public void setColumn(String column) {
+	public void setColumn(final String column) {
 		this.column = column;
 
 	}
 
 	/**
+	 * Get the current object list.
 	 * @return the objectList
 	 */
 	public ArrayList<Object> getObjectList() {
@@ -92,18 +105,25 @@ public class Section {
 	}
 
 	/**
+	 * Set the current object list.
 	 * @param objectList
 	 *            the objectList to set
 	 */
-	public void setObjectList(ArrayList<Object> objectList) {
+	public void setObjectList(final ArrayList<Object> objectList) {
 		this.objectList = objectList;
 	}
 
-	public void addObject(Object obj) {
+	/**
+	 * Add an object to the current object list.
+	 * @param obj
+	 *		The object to add
+	 */
+	public void addObject(final Object obj) {
 		this.objectList.add(obj);
 	}
 
 	/**
+	 * Get font attribute.
 	 * @return the fontColor
 	 */
 	public String getfontColor() {
@@ -111,10 +131,11 @@ public class Section {
 	}
 
 	/**
+	 * Set font attribute.
 	 * @param fontColor
 	 *            the fontColor to set
 	 */
-	public void setFontColor(String fontColor) {
+	public void setFontColor(final String fontColor) {
 		this.fontColor = fontColor;
 
 	}

@@ -1,3 +1,26 @@
+/*
+ * The MIT License
+ *
+ * Copyright (c) 2012, Thomas Deruyter, Raynald Briand
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package hudson.plugins.summary_report;
 
 
@@ -5,15 +28,14 @@ import hudson.model.*;
 import hudson.tasks.ArtifactArchiver;
 import hudson.tasks.Shell;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 import org.jvnet.hudson.test.HudsonTestCase;
 
 /**
  *
- * @author br80
+ * @author Raynald Briand
+ * @author Thomas Deruyter
  */
 public class ACIPluginPublisherTest  extends HudsonTestCase{
     
@@ -24,7 +46,9 @@ public class ACIPluginPublisherTest  extends HudsonTestCase{
     /**
      * Build test 
      */
-    public void testBuild() throws Exception{
+    public void testBuild() throws Exception {
+    	
+    	final boolean debug_info = false;
 
         /* Project creation */
         FreeStyleProject project = createFreeStyleProject("ProjectTestBuild");
@@ -66,29 +90,64 @@ public class ACIPluginPublisherTest  extends HudsonTestCase{
             
             BufferedReader buff = new BufferedReader(
                     new FileReader(build.getArtifactsDir()+"/../build.xml"));
+            System.out.println(build.getArtifactsDir()+"/../build.xml");
             try {
                 String line;
                 boolean xmlGenerated = false;
                 while ((line = buff.readLine()) != null) {
-                    
-                    if(line.contains("<hudson.plugins.summary__report.ACIPluginBuildAction>")){
-                        assertTrue(buff.readLine().contains("<build class=\"build\" reference=\"../../..\"/>"));
-                        assertTrue(buff.readLine().contains("<report>"));
-                        assertTrue(buff.readLine().contains("<section>"));
-                        assertTrue(buff.readLine().contains("<hudson.plugins.summary__report.report.Section>"));
-                        assertTrue(buff.readLine().contains("<sectionName>Session1</sectionName>"));
-                        assertTrue(buff.readLine().contains("<objectList>"));
-                        assertTrue(buff.readLine().contains("<hudson.plugins.summary__report.report.Field>"));
-                        assertTrue(buff.readLine().contains("<status>field</status>"));
-                        assertTrue(buff.readLine().contains("<fieldName>Field1</fieldName>"));
-                        assertTrue(buff.readLine().contains("<fieldValue>Field1 succeeded</fieldValue>"));
-                        assertTrue(buff.readLine().contains("</hudson.plugins.summary__report.report.Field>"));
-                        assertTrue(buff.readLine().contains("</objectList>"));
-                        assertTrue(buff.readLine().contains("</hudson.plugins.summary__report.report.Section>"));
-                        assertTrue(buff.readLine().contains("</section>"));
-                        assertTrue(buff.readLine().contains("</report>"));
-                        assertTrue(buff.readLine().contains("<fileError/>"));
-                        assertTrue(buff.readLine().contains("</hudson.plugins.summary__report.ACIPluginBuildAction>"));
+                	System.out.println(line);
+                    if(line.contains("<hudson.plugins.summary__report.ACIPluginBuildAction>")) {
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<build class=\"build\" reference=\"../../..\"/>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<report>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<reportSection>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<hudson.plugins.summary__report.report.Section>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<sectionName>Session1</sectionName>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<objectList>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<hudson.plugins.summary__report.report.Field>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<status>field</status>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<fieldName>Field1</fieldName>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<fieldValue>Field1 succeeded</fieldValue>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</hudson.plugins.summary__report.report.Field>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</objectList>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</hudson.plugins.summary__report.report.Section>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</reportSection>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</report>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("<fileError/>"));
+                    	line = buff.readLine(); 
+                    	if (debug_info) System.out.println(line);
+                        assertTrue(line.contains("</hudson.plugins.summary__report.ACIPluginBuildAction>"));
                         xmlGenerated = true;
                     }
                 }

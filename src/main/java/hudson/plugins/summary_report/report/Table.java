@@ -25,18 +25,25 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
+/**
+ * Class responsible for a table creation.
+ */
 public class Table {
 
 	private String status;
 	private ArrayList<Tr> trList;
 	private String sorttable;
 
+	/**
+	 * Constructor.
+	 */
 	public Table() {
 		trList = new ArrayList<Tr>();
 		status = "table";
 	}
 
 	/**
+	 * Get the status.
 	 * @return the status
 	 */
 	public String getStatus() {
@@ -44,15 +51,17 @@ public class Table {
 	}
 
 	/**
+	 * Set the status.
 	 * @param status
-	 *            the status to set
+	 *		the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
 
 	}
 
 	/**
+	 * Get the list of rows.
 	 * @return the trList
 	 */
 	public ArrayList<Tr> getTrList() {
@@ -60,14 +69,16 @@ public class Table {
 	}
 
 	/**
+	 * Set the list of rows.
 	 * @param trList
-	 *            the trList to set
+	 *		the trList to set
 	 */
-	public void setTrList(ArrayList<Tr> trList) {
+	public void setTrList(final ArrayList<Tr> trList) {
 		this.trList = trList;
 	}
 
 	/**
+	 * Return if the table can be sorted.
 	 * @return the sorttable
 	 */
 	public String getSorttable() {
@@ -75,15 +86,21 @@ public class Table {
 	}
 
 	/**
+	 * Set the current table sortable.
 	 * @param sorttable
-	 *            the sorttable to set
+	 * 		the sorttable to set
 	 */
-	public void setSorttable(String sorttable) {
+	public void setSorttable(final String sorttable) {
 		this.sorttable = sorttable;
 
 	}
 
-	public void addTr(Tr tr) {
+	/**
+	 * Add a row to the current list of rows.
+	 * @param tr
+	 * 		the row to add.
+	 */
+	public void addTr(final Tr tr) {
 		this.trList.add(tr);
 	}
 }

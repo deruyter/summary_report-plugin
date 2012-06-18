@@ -25,18 +25,25 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
+/**
+ * Class responsible for a accordion creation.
+ */
 public class Accordion {
 
 	private String status;
 	private String accordionName;
 	private ArrayList<Object> objectList;
 
+	/**
+	 * Constructor.
+	 */
 	public Accordion() {
 		objectList = new ArrayList<Object>();
 		status = "accordion";
 	}
 
 	/**
+	 * Get the status.
 	 * @return the status
 	 */
 	public String getStatus() {
@@ -44,15 +51,16 @@ public class Accordion {
 	}
 
 	/**
+	 * Set the status.
 	 * @param status
-	 *            the status to set
+	 *		the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
-
 	}
 
 	/**
+	 * Get the name of the accordion.
 	 * @return the accordionName
 	 */
 	public String getAccordionName() {
@@ -60,15 +68,16 @@ public class Accordion {
 	}
 
 	/**
+	 * Set the name of the accordion.
 	 * @param accordionName
-	 *            the accordionName to set
+	 *		the accordionName to set
 	 */
-	public void setAccordionName(String accordionName) {
+	public void setAccordionName(final String accordionName) {
 		this.accordionName = accordionName;
-
 	}
 
 	/**
+	 * Get the value of to the current object list.
 	 * @return the objectList
 	 */
 	public ArrayList<Object> getObjectList() {
@@ -76,14 +85,20 @@ public class Accordion {
 	}
 
 	/**
+	 * Set the value of to the current object list.
 	 * @param objectList
 	 *            the objectList to set
 	 */
-	public void setObjectList(ArrayList<Object> objectList) {
+	public void setObjectList(final ArrayList<Object> objectList) {
 		this.objectList = objectList;
 	}
 
-	public void addObject(Object obj) {
+	/**
+	 * Add an object to the current object list.
+	 * @param obj
+	 *            the object to add
+	 */
+	public void addObject(final Object obj) {
 		this.objectList.add(obj);
 	}
 

@@ -43,32 +43,71 @@ import org.apache.tools.ant.Project;
 import org.kohsuke.stapler.DataBoundConstructor;
 import org.xml.sax.SAXException;
 
+/**
+ * ACIPluginPublisher Is the main class for
+ * publishing data over build & project page.
+ */
+@SuppressWarnings("unchecked")
 public class ACIPluginPublisher extends Recorder {
 
 	/* The list name of the files to parse */
 	private String name;
 
+	/**
+	 * Set the name of the publisher.
+	 * @param name
+	 * 		The name of the published report
+	 */
 	@DataBoundConstructor
-	public ACIPluginPublisher(String name) {
+	public ACIPluginPublisher(final String name) {
 		this.name = name;
 	}
 
+	/**
+	 * Get the name of the publisher.
+	 * @return string
+	 * 		The name of the published report
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Get the action associated to the publisher.
+	 * @param project
+	 * 		Project on which to apply publication
+	 */
 	@Override
-	public Action getProjectAction(AbstractProject<?, ?> project) {
+	public Action getProjectAction(final AbstractProject<?, ?> project) {
 		return new ACIPluginProjectAction(project);
 	}
 
+	/**
+	 * Perform the publication.
+	 * @param build
+	 * 		Build on which to apply publication
+	 * @param launcher
+	 * 		Unused
+	 * @param listener
+	 * 		Unused
+	 * @return boolean
+	 * 		true if the publishing successfully complete
+	 * 		true if the publishing could not complete
+	 * @throws IOException
+	 * 		In case of file IO mismatch
+	 * @throws InterruptedException
+	 * 		In case of interuption
+	 */
 	@Override
-	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher,
-			BuildListener listener) throws IOException, InterruptedException {
+	public boolean perform(
+			final AbstractBuild<?, ?> build,
+			final Launcher launcher,
+			final BuildListener listener)
+					throws IOException, InterruptedException {
 
 		/**
-		 * Define if we must parse multiple file by searching for , in the name
-		 * var
+		 * Define if we must parse multiple file by searching for ','
+		 * in the name var.
 		 */
 		String[] files = name.split(",");
 
@@ -80,12 +119,11 @@ public class ACIPluginPublisher extends Recorder {
 			fileSet.setIncludes(files[i].trim());
 			Project antProject = new Project();
 			fileSet.setProject(antProject);
-			String[] tmp_files = fileSet.getDirectoryScanner(antProject)
+			String[] tmpFiles = fileSet.getDirectoryScanner(antProject)
 					.getIncludedFiles();
 
-			for (int j = 0; j < tmp_files.length; j++) {
-
-				filesToParse.add(tmp_files[j]);
+			for (int j = 0; j < tmpFiles.length; j++) {
+				filesToParse.add(tmpFiles[j]);
 			}
 
 		}
@@ -95,14 +133,21 @@ public class ACIPluginPublisher extends Recorder {
 			buildAction = new ACIPluginBuildAction(build, filesToParse);
 			build.addAction(buildAction);
 		} catch (ParserConfigurationException ex) {
+            System.err.println(ex.toString());
+            return false;
 		} catch (SAXException ex) {
+            System.err.println(ex.toString());
+            return false;
 		} catch (URISyntaxException ex) {
+            System.err.println(ex.toString());
+            return false;
 		}
-
 		return true;
-
 	}
 
+	/**
+	 * Method that returns the status of the service required.
+	 */
 	public BuildStepMonitor getRequiredMonitorService() {
 		return BuildStepMonitor.BUILD;
 	}

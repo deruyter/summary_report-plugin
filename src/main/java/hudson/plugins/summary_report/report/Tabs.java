@@ -25,17 +25,24 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
+/**
+ * Class responsible for a set of tab creation.
+ */
 public class Tabs {
 
 	private String status;
 	private ArrayList<Tab> tabList;
 
+	/**
+	 * Constructor.
+	 */
 	public Tabs() {
 		tabList = new ArrayList<Tab>();
 		status = "tabs";
 	}
 
 	/**
+	 * Get the status.
 	 * @return the status
 	 */
 	public String getStatus() {
@@ -43,15 +50,16 @@ public class Tabs {
 	}
 
 	/**
+	 * Set the status.
 	 * @param status
-	 *            the status to set
+	 *		the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
-
 	}
 
 	/**
+	 * Get the current tab list.
 	 * @return the tabList
 	 */
 	public ArrayList<Tab> getTabList() {
@@ -59,14 +67,20 @@ public class Tabs {
 	}
 
 	/**
+	 * Set the current tab list.
 	 * @param tabList
 	 *            the tabList to set
 	 */
-	public void setTabList(ArrayList<Tab> tabList) {
+	public void setTabList(final ArrayList<Tab> tabList) {
 		this.tabList = tabList;
 	}
 
-	public void addTab(Tab obj) {
+	/**
+	 * Add a tab to the current tab list.
+	 * @param obj
+	 *		The tab to add
+	 */
+	public void addTab(final Tab obj) {
 		this.tabList.add(obj);
 	}
 

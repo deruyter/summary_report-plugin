@@ -25,34 +25,44 @@ package hudson.plugins.summary_report.report;
 
 import java.util.ArrayList;
 
+/**
+ * Class responsible for a tab creation.
+ */
 public class Tab {
 
 	private String status;
 	private String tabName;
 	private ArrayList<Object> objectList;
 
+	/**
+	 * Constructor of a tab.
+	 */
 	public Tab() {
 		objectList = new ArrayList<Object>();
 		status = "tab";
 	}
 
 	/**
-	 * @return the status
+	 * Get the status of a tab.
+	 * @return status
+	 * 		the status
 	 */
 	public String getStatus() {
 		return status;
 	}
 
 	/**
+	 * Set the status of a tab.
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(final String status) {
 		this.status = status;
 
 	}
 
 	/**
+	 * Get the name of the tab.
 	 * @return the tabName
 	 */
 	public String getTabName() {
@@ -60,15 +70,17 @@ public class Tab {
 	}
 
 	/**
+	 * Set the name of the tab.
 	 * @param tabName
 	 *            the tabName to set
 	 */
-	public void setTabName(String tabName) {
+	public void setTabName(final String tabName) {
 		this.tabName = tabName;
 
 	}
 
 	/**
+	 * Get the current object list.
 	 * @return the objectList
 	 */
 	public ArrayList<Object> getObjectList() {
@@ -76,14 +88,20 @@ public class Tab {
 	}
 
 	/**
+	 * Set the current object list value.
 	 * @param objectList
 	 *            the objectList to set
 	 */
-	public void setObjectList(ArrayList<Object> objectList) {
+	public void setObjectList(final ArrayList<Object> objectList) {
 		this.objectList = objectList;
 	}
 
-	public void addObject(Object obj) {
+	/**
+	 * Add an object to the current object list value.
+	 * @param obj
+	 *            the object to add
+	 */
+	public void addObject(final Object obj) {
 		this.objectList.add(obj);
 	}
 
