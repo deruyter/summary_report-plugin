@@ -1,0 +1,163 @@
+================================================================================================
+  This Jenkins plug-in allow to display build results on both the project page en build page.
+  
+  See: https://wiki.jenkins-ci.org/display/JENKINS/Hudson+Summary+Display+Plugin
+
+  All source code is licensed under the MIT license.
+
+  Maintainer: Thomas Deruyter
+
+================================================================================================
+
+Those sections explains how to create an xml
+document for the summary_report Hudson plugin.
+
+----------------------------------------------------
+1. Stucture of the xml documents
+----------------------------------------------------
+
+The summary_report Hudson plugin can parse xml report
+with this structure :
+ 
+<section name="" line="" column="">
+
+	// For display a field
+	<field name="" value=""> <![CDATA[ //(Unparsed) Character Data ]]> </field>
+
+	// For display a table
+	<table>
+		<tr>
+			<td value="" bgcolor="" fontcolor="" fontattribute="" href="" align="" width=""/>
+			<td value="" bgcolor="" fontcolor="" fontattribute="" href="" align="" width=""/>
+		</tr>
+		<tr>
+			<td value="" bgcolor="" fontcolor="" fontattribute="" href="" align="" width=""/>
+			<td value="" bgcolor="" fontcolor="" fontattribute="" href="" align="" width=""/>
+		</tr>
+	</table>
+
+	// For display a tabs
+	<tabs>
+		<tab name="">
+			// Only insert table or field in tab
+		</tab>
+		<tab name="">
+			// Only insert table or field in tab
+		</tab>
+	</tabs>
+
+	// For display an accordion
+	<accordion name="">
+		// Only insert table or field in tab
+	</accordion>
+
+</section>
+
+
+----------------------------------------------------
+2.  Explication of tags
+----------------------------------------------------
+
+a. Section
+===========
+	
+	name : The name of the section
+	line : The number of the line the section will be display
+	column : The number of the column the section will be display
+
+	Ex : <section name="Performance Summary" line="0" column="0">
+
+b. field
+===========
+
+	name : The name of the field
+	value : The value of the field
+	<![CDATA[ ]]> : The term CDATA is used about text data that should not be parsed by the XML parser.
+					Everything inside a CDATA section is ignored by the parser.
+
+	Ex : <field name="Build status" value="All target succeeded"> 
+			<![CDATA[
+				+++ launch_one_valid.sh: 1: basename /sw/.../launch_one_valid.sh
+				+++ launch_one_valid.sh: 1: sed 's![^_a-zA-Z0-9]!_!g'
+				+++ launch_one_valid.sh: 260: _myname=launch_one_valid_sh
+
+				Resource usage summary:
+
+			    CPU time   :  18909.00 sec.
+			    Max Memory :        92 MB
+			    Max Swap   :       832 MB
+				Max Processes  :        17
+			    Max Threads    :        18
+
+				The output (if any) is above this job summary.
+			 ]]>
+		 </field>
+		
+c. table
+===========
+
+	It's possible to create all line ( <tr> ) is needed.
+	Idem for the column ( <td> ).
+	The column number should be equal in each line.
+
+	bgcolor : The background color of the cell
+	fontcolor : The font color of the cell
+	fontattribute : The font attribute of the cell 
+					value : normal, bold, or a number between 100 and 900
+	href : Relative link 
+	align : The text alinment
+			value : center, left, right, justify
+	width : The width of the cell
+
+	Ex:	<table>
+			<tr>
+				<td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" href="report.xls" align="center" width="200"/>
+				<td value="Column 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+			</tr>
+			<tr>
+				<td value="Line 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="left" width="200"/>
+				<td value="Value 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
+			</tr>
+		</table>
+
+d. tabs
+===========
+
+	A tabs can contain a lot of tab.
+	It's possible to insert in each tab, a field or a table.
+	But it's not possible to insert tabs or accordion
+
+	name : The name of the tab
+	
+	Ex : <tabs>
+			<tab name="First tab">
+				<field name="Build status" value="All target succeeded" />
+				<field name="Functionnal status" value="Validation is Ok" />
+			</tab>
+			<tab name="Second tab">
+				<table>
+					<tr>
+						<td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" href="report.xls" align="center" width="200"/>
+						<td value="Column 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="center" width="200"/>
+					</tr>
+					<tr>
+						<td value="Line 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="left" width="200"/>
+						<td value="Value 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
+					</tr>
+				</table>
+			</tab>
+		</tabs>
+
+
+e. accordion
+===========
+
+	It's possible to insert in each accordion, a field or a table.
+	But it's not possible to insert tabs or accordion.
+
+	name : The name of the accordion
+
+	Ex : <accordion name="O3MultCAS">
+		 	<field name="Option" value="Value of options" />
+			<field name="Tests" value="Value of tests" />
+	  	 </accordion>
