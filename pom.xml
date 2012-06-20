@@ -3,7 +3,7 @@
   <parent>
    <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
     <artifactId>plugin</artifactId>
-    <version>1.448</version>
+    <version>1.460</version>
   </parent>
 
   <artifactId>summary_report</artifactId>
@@ -22,11 +22,6 @@
   </licenses>
 
   <developers>
-    <developer>
-      <id>briandr</id>
-      <name>Briand Raynald</name>
-      <email>tderuyte@gmail.com</email>
-    </developer>
     <developer>
       <id>deruyter</id>
       <name>Deruyter Thomas</name>
