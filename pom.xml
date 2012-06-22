@@ -7,11 +7,11 @@
   </parent>
 
   <artifactId>summary_report</artifactId>
-  <name>Hudson Summary Display Plugin</name>
+  <name>Summary Display Plugin</name>
   <version>1.2-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <description>Extend build and project page with extended results in XML format</description>
-  <url>http://wiki.jenkins-ci.org/display/JENKINS/Hudson+Summary+Display+Plugin</url>
+  <url>http://wiki.jenkins-ci.org/display/JENKINS/Summary+Display+Plugin</url>
 
   <licenses>
     <license>

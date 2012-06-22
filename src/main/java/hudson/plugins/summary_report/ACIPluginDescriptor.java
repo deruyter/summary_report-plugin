@@ -56,6 +56,6 @@ public class ACIPluginDescriptor extends BuildStepDescriptor<Publisher> {
 	 */
 	@Override
 	public String getDisplayName() {
-		return "Publish ACI reports";
+		return "Publish XML Summary Reports";
 	}
 }
