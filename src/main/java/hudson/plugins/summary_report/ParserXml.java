@@ -36,7 +36,6 @@ import hudson.plugins.summary_report.report.Tr;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -50,16 +49,15 @@ import org.xml.sax.helpers.DefaultHandler;
 public class ParserXml {
 
     private static Section resultat;
-    private static URI xmlPath;
-
+    private static String xmlPath;
     /**
      * XML Parser.
      *
-     * @param xml
-     * 		URI Path to the xml file
+     * @param xmlFile
+     * 		Access path to the xml file
      */
-    public ParserXml(final URI xml) {
-        xmlPath = xml;
+    public ParserXml(final String xmlFile) {
+        xmlPath = xmlFile;
     }
 
     /**

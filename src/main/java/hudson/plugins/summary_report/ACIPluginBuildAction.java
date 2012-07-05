@@ -30,7 +30,6 @@ import java.io.File;
 import java.io.IOException;
 
 import java.io.Serializable;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javax.xml.parsers.ParserConfigurationException;
@@ -87,12 +86,10 @@ public class ACIPluginBuildAction implements Action,
 
 			String currentReport = files.get(i);
 
-			String path = "file:" + build.getArtifactsDir().getAbsolutePath()
+			String path = build.getArtifactsDir().getAbsolutePath()
 					+ File.separatorChar + currentReport;
 
-			URI xml = new URI(path);
-
-			ParserXml parseur = new ParserXml(xml);
+			ParserXml parseur = new ParserXml(path);
 
 			String resParse = parseur.parse();
 			if (resParse.equals("")) {

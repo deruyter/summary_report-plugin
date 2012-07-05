@@ -26,7 +26,6 @@ package hudson.plugins.summary_report;
 import java.lang.String;
 import java.io.File;
 import java.io.FileWriter;
-import java.net.URI;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -57,7 +56,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_empty_file.xml");
 
-        URI xml_path_empty_file = new URI("file:/tmp/test_empty_file.xml");
+        String xml_path_empty_file = "/tmp/test_empty_file.xml";
         FileWriter writer_empty_file = new FileWriter("/tmp/test_empty_file.xml",true);
 
         writer_empty_file.write("");
@@ -77,7 +76,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_two_sections.xml");
 
-        URI xml_path_two_sections = new URI("file:/tmp/test_two_sections.xml");
+        String xml_path_two_sections = "/tmp/test_two_sections.xml";
         FileWriter writer_two_sections = new FileWriter("/tmp/test_two_sections.xml",true);
 
         writer_two_sections.write("<section name=\"Section Test\">"
@@ -101,7 +100,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_incomplete_sections.xml");
 
-        URI xml_path_incomplete_sections = new URI("file:/tmp/test_incomplete_sections.xml");
+        String xml_path_incomplete_sections = "/tmp/test_incomplete_sections.xml";
         FileWriter writer_incomplete_sections = new FileWriter("/tmp/test_incomplete_sections.xml",true);
 
         writer_incomplete_sections.write("<section name=\"Section Test\">"
@@ -123,7 +122,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_wrong_field.xml");
 
-        URI xml_path_wrong_field = new URI("file:/tmp/test_wrong_field.xml");
+        String xml_path_wrong_field = "/tmp/test_wrong_field.xml";
         FileWriter writer_wrong_field = new FileWriter("/tmp/test_wrong_field.xml",true);
 
         writer_wrong_field.write("<section name=\"Section Test\">"
@@ -147,7 +146,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_wrong_table.xml");
 
-        URI xml_path_wrong_table = new URI("file:/tmp/test_wrong_table.xml");
+        String xml_path_wrong_table = "/tmp/test_wrong_table.xml";
         FileWriter writer_wrong_table = new FileWriter("/tmp/test_wrong_table.xml",true);
 
         writer_wrong_table.write("<section name=\"Section Test\">"
@@ -177,7 +176,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_wrong_accordion.xml");
 
-        URI xml_path_wrong_accordion = new URI("file:/tmp/test_wrong_accordion.xml");
+        String xml_path_wrong_accordion = "/tmp/test_wrong_accordion.xml";
         FileWriter writer_wrong_accordion = new FileWriter("/tmp/test_wrong_accordion.xml",true);
 
         writer_wrong_accordion.write("<section name=\"Section Test\">"
@@ -203,7 +202,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_wrong_tabs.xml");
 
-        URI xml_path_wrong_tabs = new URI("file:/tmp/test_wrong_tabs.xml");
+        String xml_path_wrong_tabs = "/tmp/test_wrong_tabs.xml";
         FileWriter writer_wrong_tabs = new FileWriter("/tmp/test_wrong_tabs.xml",true);
 
         writer_wrong_tabs.write("<section name=\"Section Test\">"
@@ -247,7 +246,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_field.xml");
 
-        URI xml_path_field = new URI("file:/tmp/test_field.xml");
+        String xml_path_field = "/tmp/test_field.xml";
         FileWriter writer_field = new FileWriter("/tmp/test_field.xml",true);
 
         writer_field.write("<section name=\"Section Test\">"
@@ -271,7 +270,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_table.xml");
 
-        URI xml_path_table = new URI("file:/tmp/test_table.xml");
+        String xml_path_table = "/tmp/test_table.xml";
         FileWriter writer_table = new FileWriter("/tmp/test_table.xml",true);
 
         writer_table.write("<section name=\"Section Test\">"
@@ -303,7 +302,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_accordion.xml");
 
-        URI xml_path_accordion = new URI("file:/tmp/test_accordion.xml");
+        String xml_path_accordion = "/tmp/test_accordion.xml";
         FileWriter writer_accordion = new FileWriter("/tmp/test_accordion.xml",true);
 
         writer_accordion.write("<section name=\"Section Test\">"
@@ -334,7 +333,7 @@ public class ParserXmlTest {
         /* Verification of existing file */
         deleteFiles("/tmp/test_tabs.xml");
 
-        URI xml_path_tabs = new URI("file:/tmp/test_tabs.xml");
+        String xml_path_tabs = "/tmp/test_tabs.xml";
         FileWriter writer_tabs = new FileWriter("/tmp/test_tabs.xml",true);
 
         writer_tabs.write("<section name=\"Section Test\">"

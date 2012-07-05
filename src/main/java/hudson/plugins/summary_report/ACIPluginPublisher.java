@@ -133,13 +133,13 @@ public class ACIPluginPublisher extends Recorder {
 			buildAction = new ACIPluginBuildAction(build, filesToParse);
 			build.addAction(buildAction);
 		} catch (ParserConfigurationException ex) {
-            System.err.println(ex.toString());
+			listener.getLogger().println(ex.toString());
             return false;
 		} catch (SAXException ex) {
-            System.err.println(ex.toString());
+			listener.getLogger().println(ex.toString());
             return false;
 		} catch (URISyntaxException ex) {
-            System.err.println(ex.toString());
+			listener.getLogger().println(ex.toString());
             return false;
 		}
 		return true;

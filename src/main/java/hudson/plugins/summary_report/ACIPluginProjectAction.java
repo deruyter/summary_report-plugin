@@ -72,7 +72,6 @@ public class ACIPluginProjectAction implements Action, Serializable {
      * @return null
      */
     public String getIconFileName() {
-//        return "/plugin/summary_report/icons/summary_report.png";
         return null;
     }
     /**
