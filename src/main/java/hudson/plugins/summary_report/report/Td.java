@@ -35,6 +35,7 @@ public class Td {
 	private String width;
 	private String align;
 	private String cdata;
+	private String title;
 
 	/**
 	 * Constructor.
@@ -53,6 +54,23 @@ public class Td {
 	}
 
 	/**
+	 * Set Cell title.
+	 * @param title
+	 *            the title to set
+	 */
+	public void setTitle(final String title) {
+		this.title = title;
+	}
+
+	/**
+	 * Get Cell title.
+	 * @return the title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
 	 * Set Column value.
 	 * @param tdValue
 	 *            the tdValue to set
@@ -61,6 +79,8 @@ public class Td {
 		this.tdValue = tdValue;
 	}
 
+	
+	
 	/**
 	 * Get background color.
 	 * @return the bgColor
