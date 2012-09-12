@@ -79,8 +79,6 @@ public class Td {
 		this.tdValue = tdValue;
 	}
 
-	
-	
 	/**
 	 * Get background color.
 	 * @return the bgColor
