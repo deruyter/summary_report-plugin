@@ -13,7 +13,7 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
     <div align="right">
     <table>
         <tr>
-            <h1>Result of build #${from.getLastFinishedBuild().getNumber()}</h1>
+            <h1 align="center">Result of build #${from.getLastFinishedBuild().getNumber()}</h1>
         </tr>
         <tr>
             <td>
