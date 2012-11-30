@@ -6,58 +6,52 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
     <!-- <st:include page="/style/buildSummaryCss.jelly" /> -->
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/sorttable/sorttable.js"></script>
     <link type="text/css" href="${rootURL}/plugin/summary_report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
+    <link type="text/css" href="${rootURL}/plugin/summary_report/css/summary_report.css" rel="stylesheet" />
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
     
-    <div align="right">
-    <table>
-        <tr>
-            <h1 align="center">Result of build #${from.getLastFinishedBuild().getNumber()}</h1>
-        </tr>
-        <tr>
-            <td>
-            <j:set var="buildn" value="${from.getLastFinishedBuild().getNumber()}/"/>
-            <j:set var="projectname" value="${from.getProjectName()}"/>
-            <j:set var="buildnumber" value="${from.getLastFinishedBuild().getNumber()}"/>
+    <div class="summary_report_project">
+        <h1>Result of build #${from.getLastFinishedBuild().getNumber()}</h1>
 
-                <!-- For each file .xml-->
-                <j:forEach var="a" items="${from.getReport().getSection()}" indexVar="indexA">
+        <j:set var="buildn" value="${from.getLastFinishedBuild().getNumber()}/"/>
+        <j:set var="projectname" value="${from.getProjectName()}"/>
+        <j:set var="buildnumber" value="${from.getLastFinishedBuild().getNumber()}"/>
 
-                    <h2 style="color:${a.fontColor};">${a.sectionName}</h2>
+        <!-- For each file .xml-->
+        <j:forEach var="a" items="${from.getReport().getSection()}" indexVar="indexA">
 
-                    <!-- For each object in the section -->
-                    <j:forEach var="b" items="${a.objectList}" indexVar="indexB">
+            <h2 style="color:${a.fontColor};">${a.sectionName}</h2>
 
-                        <!-- If the object is a table -->
-                        <j:if test="${b.status == 'table'}">
-                            <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentTable.jelly" />
-                        </j:if>
+            <!-- For each object in the section -->
+            <j:forEach var="b" items="${a.objectList}" indexVar="indexB">
 
-                        <!-- If the object is a field -->
-                        <j:if test="${b.status == 'field'}">
-                            <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentField.jelly" />
-                        </j:if>
+                <!-- If the object is a table -->
+                <j:if test="${b.status == 'table'}">
+                    <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentTable.jelly" />
+                </j:if>
 
-                        <!-- If the object is an accordion -->
-                        <j:if test="${b.status == 'accordion'}">
-                            <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentAccordion.jelly" />
-                        </j:if>
+                <!-- If the object is a field -->
+                <j:if test="${b.status == 'field'}">
+                    <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentField.jelly" />
+                </j:if>
 
-                         <!-- If the object is a tab -->
-                        <j:if test="${b.status == 'tabs'}">
-                            <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentTabs.jelly" />
-                        </j:if>
+                <!-- If the object is an accordion -->
+                <j:if test="${b.status == 'accordion'}">
+                    <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentAccordion.jelly" />
+                </j:if>
 
-                    </j:forEach>
+                 <!-- If the object is a tab -->
+                <j:if test="${b.status == 'tabs'}">
+                    <st:include class="hudson.plugins.summary_report.ACIPluginBuildAction" page="componentTabs.jelly" />
+                </j:if>
 
-                </j:forEach>
-                <!-- For each fileError-->
-                <j:forEach var="c" items="${from.getFileError()}" indexVar="indexC">
-                    <h2 style="color:${c[0]};">${c[1]}: <a style="color:${c[2]};" href="${c[3]}">${c[5]}</a></h2>
-                </j:forEach>
-            </td>
-        </tr>
-    </table>
-</div>
+            </j:forEach>
+
+        </j:forEach>
+        <!-- For each fileError-->
+        <j:forEach var="c" items="${from.getFileError()}" indexVar="indexC">
+            <h2 style="color:${c[0]};">${c[1]}: <a style="color:${c[2]};" href="${c[3]}">${c[5]}</a></h2>
+        </j:forEach>
+    </div>
 </j:jelly>
