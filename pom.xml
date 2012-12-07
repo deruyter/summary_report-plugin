@@ -72,8 +72,8 @@
 
   
   <scm>
-    <connection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</connection>
-    <developerConnection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</developerConnection>
+    <connection>scm:git:git@github.com:jenkinsci/summary_report-plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:jenkinsci/summary_report-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/summary_report-plugin</url>
   </scm>
 
