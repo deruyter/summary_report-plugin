@@ -8,7 +8,7 @@
 
   <artifactId>summary_report</artifactId>
   <name>Summary Display Plugin</name>
-  <version>1.5-SNAPSHOT</version>
+  <version>1.6-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <description>Extend build and project page with extended results in XML format</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Summary+Display+Plugin</url>
