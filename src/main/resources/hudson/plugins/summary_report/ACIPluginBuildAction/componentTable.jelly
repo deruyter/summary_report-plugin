@@ -1,39 +1,41 @@
 
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
 
-    <j:set var="sorttable" value="sortable_nosort"/>
+    <j:set var="sorttable" value=""/>
 
     <!-- if b.sorttable == yes -->
     <j:if test="${b.sorttable}">
-        <j:set var="sorttable" value="sortable"/>
+        <j:set var="sorttable" value="summary_report_sortable"/>
     </j:if>
 
     <table class="${sorttable}" border="1" cellspacing="0">
-        <j:forEach var="o" items="${b.trList}">
-            <tr>
-                <j:forEach var="p" items="${o.tdList}">
-                    <td style="width:${p.width}; background-color:${p.bgColor};" title="${p.title}" align="${p.align}">
-                        <j:if test="${p.tdValue != null}">
-                            <j:set var="phref" value="${p.href}"/>
-                            <j:if test="${p.href != null}" >
-                                <j:set var="phref" value="${buildn}${p.href}"/>
+        <tbody>
+            <j:forEach var="o" items="${b.trList}">
+                <tr>
+                    <j:forEach var="p" items="${o.tdList}">
+                        <td style="width:${p.width}; background-color:${p.bgColor};" title="${p.title}" align="${p.align}">
+                            <j:if test="${p.tdValue != null}">
+                                <j:set var="phref" value="${p.href}"/>
+                                <j:if test="${p.href != null}" >
+                                    <j:set var="phref" value="${buildn}${p.href}"/>
+                                </j:if>
+                                <p>
+                                    <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
+                                       href="${phref}">
+                                       ${p.tdValue}
+                                    </a>
+                                </p>
                             </j:if>
-                            <p>
-                                <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
-                                   href="${phref}">
-                                   ${p.tdValue}
-                                </a>
-                            </p>
-                        </j:if>
-                        <j:if test="${p.cdata != null}">
-                            <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">
-                                ${p.cdata}
-                            </pre>
-                        </j:if>
-                    </td>
-                </j:forEach>
-            </tr>
-        </j:forEach>
+                            <j:if test="${p.cdata != null}">
+                                <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">
+                                    ${p.cdata}
+                                </pre>
+                            </j:if>
+                        </td>
+                    </j:forEach>
+                </tr>
+            </j:forEach>
+        </tbody>
     </table>
     
 </j:jelly>
