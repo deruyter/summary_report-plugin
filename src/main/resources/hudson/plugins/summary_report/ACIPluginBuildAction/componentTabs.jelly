@@ -3,14 +3,14 @@
     <script type="text/javascript">
         <!-- Function who create tabs -->
         function create_tabs(tabName){
-           $(function (){
+           jQuery(function (){
               var cookieName = tabName;
-              $(tabName).tabs({
+              jQuery(tabName).tabs({
 
-                    selected: ( $.cookies.get( cookieName ) || 0 ),
+                    selected: ( jQuery.cookies.get( cookieName ) || 0 ),
                     select: function( e, ui )
                     {
-                            $.cookies.set( cookieName, ui.index );
+                            jQuery.cookies.set( cookieName, ui.index );
                     }
 
                 } );

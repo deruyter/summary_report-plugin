@@ -8,6 +8,9 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
     <link type="text/css" href="${rootURL}/plugin/summary_report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
     <link type="text/css" href="${rootURL}/plugin/summary_report/css/summary_report.css" rel="stylesheet" />
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
+    <script>
+      jQuery.noConflict();
+    </script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
     

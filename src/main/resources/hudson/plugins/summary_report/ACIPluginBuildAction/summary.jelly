@@ -16,6 +16,9 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
 
     <!-- JQuery lib -->
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
+    <script>
+      jQuery.noConflict();
+    </script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     
     <!-- Cookies lib -->
