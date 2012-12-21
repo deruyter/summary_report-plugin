@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <section name="Performance Summary" line="0" column="0">
 <field name="Field Name To Display" titlecolor="black" value="My Field Value" detailcolor="#000000" href="artifacts/field.txt">
 	<![CDATA[
@@ -8,12 +9,16 @@
 </field>
 <table sorttable="yes">
         <tr>
-                <td value="Table title" bgcolor="red" fontcolor="black" fontattribute="bold" title="Title1" href="report.xls" align="center" width="200"/>
-                <td value="Column 1" bgcolor="white" fontcolor="black" fontattribute="normal" title="Title2" href="" align="center" width="200"/>
+                <td value="Col1"/>
+                <td value="Col2"/>
         </tr>
         <tr>
                 <td value="Line 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="left" width="200"/>
-                <td value="Value 1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
+                <td value="1" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
+        </tr>
+        <tr>
+                <td value="Line 2" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="left" width="200"/>
+                <td value="0" bgcolor="white" fontcolor="black" fontattribute="normal" href="" align="none" width="200"/>
         </tr>
 </table>
 <tabs>
@@ -36,5 +41,3 @@
 </tabs>
 
 </section>
-
-
