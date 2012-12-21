@@ -61,14 +61,14 @@
                 <!-- if the object is a table -->
                 <j:if test="${n.status == 'table'}">
 
-                    <j:set var="sorttable" value="sortable_nosort"/>
+                    <j:set var="sorttable" value=""/>
 
                     <!-- if b.sorttable == yes -->
                     <j:if test="${n.sorttable}">
                         <j:set var="sorttable" value="sortable"/>
                     </j:if>
 
-                    <table class="${sorttable}" border="1" cellspacing="0">
+                    <table class="summary_report_table ${sorttable}">
                             <j:forEach var="o" items="${n.trList}">
                                 <tr>
                                     <j:forEach var="p" items="${o.tdList}">
@@ -79,12 +79,10 @@
                                                <j:if test="${p.href != null}" >
                                                     <j:set var="phref" value="${buildn}${p.href}"/>
                                                 </j:if>
-                                                <p>
-                                                    <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
-                                                       href="${phref}">
-                                                       ${p.tdValue}
-                                                    </a>
-                                                </p>
+                                                <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
+                                                   href="${phref}">
+                                                   ${p.tdValue}
+                                                </a>
                                             </j:if>
                                             <j:if test="${p.cdata != null}">
                                                 <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">

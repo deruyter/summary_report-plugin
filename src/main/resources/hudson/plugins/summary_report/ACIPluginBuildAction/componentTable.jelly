@@ -8,7 +8,7 @@
         <j:set var="sorttable" value="summary_report_sortable"/>
     </j:if>
 
-    <table class="${sorttable}" border="1" cellspacing="0">
+    <table class="summary_report_table ${sorttable}">
         <tbody>
             <j:forEach var="o" items="${b.trList}">
                 <tr>
@@ -19,12 +19,10 @@
                                 <j:if test="${p.href != null}" >
                                     <j:set var="phref" value="${buildn}${p.href}"/>
                                 </j:if>
-                                <p>
-                                    <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
-                                       href="${phref}">
-                                       ${p.tdValue}
-                                    </a>
-                                </p>
+                                <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
+                                   href="${phref}">
+                                   ${p.tdValue}
+                                </a>
                             </j:if>
                             <j:if test="${p.cdata != null}">
                                 <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">
