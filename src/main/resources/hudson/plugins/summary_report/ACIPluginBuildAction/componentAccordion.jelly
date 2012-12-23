@@ -7,20 +7,20 @@
         <!-- Function who create accordion -->
         function create_accordion(accordionName){
 
-            $( function()
+            jQuery( function()
             {
                 var cookieName = accordionName;
 
                 <!-- In default we close all accordion, we fix index to 10 -->
                 var var_active = 10;
                 
-                var cookies_id = $.cookies.get(cookieName);
+                var cookies_id = jQuery.cookies.get(cookieName);
 
                 if (cookies_id == cookieName){
                     var_active = 0;
                 }
 
-               $(accordionName).accordion( {
+               jQuery(accordionName).accordion( {
 
                     active: var_active,
                     collapsible: true,
@@ -30,9 +30,9 @@
                     change: function( e, ui ) {
                             <!-- If accordion is not open (10), we create cookie to save state -->
                             if (cookies_id != cookieName){
-                                 $.cookies.set( cookieName, cookieName);
+                                 jQuery.cookies.set( cookieName, cookieName);
                             }else{
-                                 $.cookies.del(cookieName);
+                                 jQuery.cookies.del(cookieName);
                             }
                     }
                 } );
@@ -61,14 +61,14 @@
                 <!-- if the object is a table -->
                 <j:if test="${n.status == 'table'}">
 
-                    <j:set var="sorttable" value="sortable_nosort"/>
+                    <j:set var="sorttable" value=""/>
 
                     <!-- if b.sorttable == yes -->
                     <j:if test="${n.sorttable}">
                         <j:set var="sorttable" value="sortable"/>
                     </j:if>
 
-                    <table class="${sorttable}" border="1" cellspacing="0">
+                    <table class="summary_report_table ${sorttable}">
                             <j:forEach var="o" items="${n.trList}">
                                 <tr>
                                     <j:forEach var="p" items="${o.tdList}">
@@ -79,12 +79,10 @@
                                                <j:if test="${p.href != null}" >
                                                     <j:set var="phref" value="${buildn}${p.href}"/>
                                                 </j:if>
-                                                <p>
-                                                    <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
-                                                       href="${phref}">
-                                                       ${p.tdValue}
-                                                    </a>
-                                                </p>
+                                                <a style="color:${p.fontColor}; font-weight:${p.fontAttribute};"
+                                                   href="${phref}">
+                                                   ${p.tdValue}
+                                                </a>
                                             </j:if>
                                             <j:if test="${p.cdata != null}">
                                                 <pre style="color:${p.fontColor}; font-weight:${p.fontAttribute};">

@@ -19,3 +19,28 @@
 .summary_report_field span:first-child:after {
     content: ":";
 }
+
+.summary_report_table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.summary_report_table th {
+    border: 1px solid black;
+    padding: 0.6em;
+}
+
+.summary_report_table td {
+    border: 1px solid black;
+    padding: 0.6em;
+}
+
+.summary_report_sortable .headerSortDown {
+    background-color: #333;
+    color: #fff;
+}
+
+.summary_report_sortable .headerSortUp {
+    background-color: #333;
+    color: #fff;
+}

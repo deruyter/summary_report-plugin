@@ -1,18 +1,25 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
-    <j:set var="phref" value="${b.href}"/>
-    <j:if test="${b.href != null}" >
-        <div class="summary_report_field" style="color:${b.titleColor};">
-            <span>${b.fieldName}</span>
-            <span style="color:${b.detailColor};"><a href="${buildn}${b.href}">${b.fieldValue}</a></span>
-        </div>
-    </j:if>
+    <div class="summary_report_field" style="color:${b.titleColor};">
+        <span>${b.fieldName}</span>
+        <span style="color:${b.detailColor};">
+            <j:if test="${b.href.substring(0,7) == 'http://'}" >
+                <a href="${b.href}">${b.fieldValue}</a>
+            </j:if>
 
-    <j:if test="${b.href == null}" >
-        <div class="summary_report_field" style="color:${b.titleColor};">
-            <span>${b.fieldName}</span>
-            <span style="color:${b.detailColor};">${b.fieldValue}</span>
-        </div>
-    </j:if>
+            <j:if test="${b.href.substring(0,8) == 'https://'}" >
+                <a href="${b.href}">${b.fieldValue}</a>
+            </j:if>
+
+            <j:if test="${b.href == null}" >
+                ${b.fieldValue}
+            </j:if>
+
+            <j:if test="${(b.href != null) &amp;&amp; (b.href.substring(0,7) != 'http://') &amp;&amp; (b.href.substring(0,8) != 'https://')}" >
+                <a href="${buildn}${b.href}">${b.fieldValue}</a>
+            </j:if>
+        </span>
+     </div>
+
 
     <pre>${b.cdata}</pre>
 </j:jelly>

@@ -6,8 +6,6 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
     <!-- Import librairy -->
     <!-- *************** -->
     
-    <!-- Sorttable lib -->
-    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/sorttable/sorttable.js"></script>
 
    <!-- Css -->
     <link type="text/css" href="${rootURL}/plugin/summary_report/lib/jquery/css/smoothness/jquery-ui-1.8.6.custom.css" rel="stylesheet" />
@@ -16,10 +14,13 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
 
     <!-- JQuery lib -->
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/js/summary_report.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
+
     
     <!-- Cookies lib -->
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
+    <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.tablesorter.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/douglascrockford-JSON-js/json2.js"></script>
 
 
