@@ -1,5 +1,7 @@
-<j:jelly xmlns:j="jelly:core"        xmlns:l="/lib/layout"
-xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
+
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" 
+xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:p="/lib/hudson/project">
 
 
     <!-- Import library -->
@@ -13,16 +15,15 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery/js/jquery-ui-1.8.6.custom.min.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.cookie.js"></script>
     <script type="text/javascript" src="${rootURL}/plugin/summary_report/lib/jquery.tablesorter.min.js"></script>
-
-    <div class="summary_report_project">
+	
+    <div class="summary_report_project" align="left">
         <h1>Result of build #${from.getLastFinishedBuild().getNumber()}</h1>
 
         <j:set var="buildn" value="${from.getLastFinishedBuild().getNumber()}/"/>
         <j:set var="projectname" value="${from.getProjectName()}"/>
         <j:set var="buildnumber" value="${from.getLastFinishedBuild().getNumber()}"/>
-
         <!-- For each file .xml-->
-        <j:if test="from.getReport() != null" >
+        <j:if test="${from.getReport() != null}" >
             <j:forEach var="a" items="${from.getReport().getSection()}" indexVar="indexA">
 
                 <h2 style="color:${a.fontColor};">${a.sectionName}</h2>
@@ -55,7 +56,7 @@ xmlns:t="/lib/hudson" xmlns:st="jelly:stapler">
             </j:forEach>
         </j:if>
         <!-- For each fileError-->
-        <j:if test="from != null">
+        <j:if test="${from != null}">
             <j:forEach var="c" items="${from.getFileError()}" indexVar="indexC">
                 <h2 style="color:${c[0]};">${c[1]}: <a style="color:${c[2]};" href="${c[3]}">${c[5]}</a></h2>
             </j:forEach>

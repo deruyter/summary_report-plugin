@@ -39,6 +39,7 @@ public class ACIPluginDescriptor extends BuildStepDescriptor<Publisher> {
 	 */
 	public ACIPluginDescriptor() {
 		super(ACIPluginPublisher.class);
+		load();
 	}
 
 	/**
