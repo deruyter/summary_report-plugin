@@ -9,7 +9,7 @@
   <artifactId>summary_report</artifactId>
   <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
   <name>Summary Display Plugin</name>
-  <version>1.12-SNAPSHOT</version>
+  <version>1.12</version>
   <packaging>hpi</packaging>
   <description>Extend build and project page with extended results in XML format</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Summary+Display+Plugin</url>
@@ -38,24 +38,17 @@
   <build>
     <plugins>
    <plugin>
-      <artifactId>maven-release-plugin</artifactId>
-      <version>2.4.2</version>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.maven.scm</groupId>
-          <artifactId>maven-scm-provider-gitexe</artifactId>
-          <version>1.8.1</version>
-        </dependency>
-       </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <goals>deploy</goals>
-        </configuration>
-      </plugin>
-      <plugin>
+    <artifactId>maven-release-plugin</artifactId>
+    <version>2.5.1</version>
+    <configuration>
+      <!--
+        During release:perform, enable the "release" profile
+       -->
+      <releaseProfiles>release</releaseProfiles>
+    </configuration>
+  </plugin>
+
+     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <configuration>
@@ -87,6 +80,7 @@
     <connection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</connection>
     <developerConnection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/summary_report-plugin</url>
+    <tag>summary_report-1.12</tag>
   </scm>
 
   <properties>
