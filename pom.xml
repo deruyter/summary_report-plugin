@@ -9,7 +9,7 @@
   <artifactId>summary_report</artifactId>
   <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
   <name>Summary Display Plugin</name>
-  <version>1.11-SNAPSHOT</version>
+  <version>1.16-SNAPSHOT</version>
   <packaging>hpi</packaging>
   <description>Extend build and project page with extended results in XML format</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Summary+Display+Plugin</url>
@@ -34,32 +34,6 @@
     </developer>
   </developers>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <goals>deploy</goals>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <configLocation>checkstyle.xml</configLocation>
-          <failsOnError>true</failsOnError>
-          <consoleOutput>true</consoleOutput>
-        </configuration>
-        <executions>
-            <execution>
-                <goals><goal>check</goal></goals>
-                <phase>compile</phase>
-            </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 
   <dependencies>
     <dependency>
