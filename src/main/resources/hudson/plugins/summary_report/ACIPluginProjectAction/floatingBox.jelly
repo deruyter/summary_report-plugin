@@ -3,6 +3,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" 
 xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:p="/lib/hudson/project">
 
+  <j:if test="${from.isShownOnProjectPage() == true}" >
 
     <!-- Import library -->
     <!-- <st:include page="/style/buildSummaryCss.jelly" /> -->
@@ -62,4 +63,5 @@ xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:p="/lib/hu
             </j:forEach>
         </j:if>
     </div>
+  </j:if>
 </j:jelly>
