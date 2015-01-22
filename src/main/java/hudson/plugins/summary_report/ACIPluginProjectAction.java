@@ -125,8 +125,12 @@ public class ACIPluginProjectAction implements Action, Serializable {
      */
     public Report getReport() {
        AbstractBuild<?, ?> build = getLastFinishedBuild();
+       // When the project has not had a build yet, build is null
+       if (build == null) {
+           return null;
+       }
        ACIPluginBuildAction resultAction =
-    		   build.getAction(ACIPluginBuildAction.class);
+           build.getAction(ACIPluginBuildAction.class);
        return resultAction.getReport();
     }
 
@@ -138,8 +142,12 @@ public class ACIPluginProjectAction implements Action, Serializable {
      */
     public ArrayList< ArrayList<String> > getFileError() {
         AbstractBuild<?, ?> build = getLastFinishedBuild();
+        // When the project has not had a build yet, build is null
+        if (build == null) {
+            return null;
+        }
         ACIPluginBuildAction resultAction =
-        		build.getAction(ACIPluginBuildAction.class);
+            build.getAction(ACIPluginBuildAction.class);
         return resultAction.getFileError();
     }
 
