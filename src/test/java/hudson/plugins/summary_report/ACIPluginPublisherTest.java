@@ -61,7 +61,7 @@ public class ACIPluginPublisherTest  extends HudsonTestCase{
         project.getPublishersList().add(archiver);
         
         /* Add ACIPluginPublisher publisher */
-        ACIPluginPublisher publisher = new ACIPluginPublisher("*.xml");
+        ACIPluginPublisher publisher = new ACIPluginPublisher("*.xml", true);
         project.getPublishersList().add(publisher);
 
         /* After add ACIPluginPublisher and ArtifactArchiver */

@@ -9,4 +9,11 @@
 			description="ex : artifacts/log/*.xml">
 			<f:textbox field="name" />
 		</f:entry>
+                <f:entry
+                       title="Show on Project Page"
+                       field="shownOnProjectPage"
+                       description="By default, the reports are shown on the Project Page and on the Results Page. Unselect to display only on the Results Page."
+                       >
+                       <f:checkbox />
+               </f:entry>
 </j:jelly>

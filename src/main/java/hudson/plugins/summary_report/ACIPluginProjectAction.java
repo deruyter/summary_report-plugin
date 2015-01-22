@@ -27,6 +27,9 @@ import hudson.model.Action;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.plugins.summary_report.report.Report;
+import hudson.util.DescribableList;
+import hudson.tasks.Publisher;
+import hudson.model.Descriptor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -162,4 +165,16 @@ public class ACIPluginProjectAction implements Action, Serializable {
         str = str.replace(".", "dot");
         return str;
     }
+
+    /**
+     * This method return a boolean indicating whether to display the report on the project page
+     *
+     * @return shownOnProjectPage
+     *                 The project name
+     */
+     public boolean isShownOnProjectPage() {
+       DescribableList<Publisher, Descriptor<Publisher>> publishers = project.getPublishersList();
+       ACIPluginPublisher publisher = publishers.get(ACIPluginPublisher.class);
+       return publisher.isShownOnProjectPage();
+     }
 }
