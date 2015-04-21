@@ -6,8 +6,9 @@
     <version>1.532.3</version><!-- which version of Jenkins is this plugin built against? Users must have at least this Jenkins version to use this plugin. -->
   </parent>
 
-  <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
+  <groupId>org.jenkins-ci.plugins</groupId>
   <artifactId>summary_report</artifactId>
+  <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
   <name>Summary Display Plugin</name>
   <version>1.13-SNAPSHOT</version>
   <packaging>hpi</packaging>
