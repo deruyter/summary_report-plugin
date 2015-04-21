@@ -167,14 +167,17 @@ public class ACIPluginProjectAction implements Action, Serializable {
     }
 
     /**
-     * This method return a boolean indicating whether to display the report on the project page
+     * This method return a boolean indicating whether to
+     * display the report on the project page.
      *
      * @return shownOnProjectPage
      *                 The project name
      */
      public boolean isShownOnProjectPage() {
-       DescribableList<Publisher, Descriptor<Publisher>> publishers = project.getPublishersList();
-       ACIPluginPublisher publisher = publishers.get(ACIPluginPublisher.class);
+       DescribableList<Publisher, Descriptor<Publisher>> publishers =
+    		   project.getPublishersList();
+       ACIPluginPublisher publisher =
+    		   publishers.get(ACIPluginPublisher.class);
        return publisher.isShownOnProjectPage();
      }
 }

@@ -41,7 +41,6 @@ import org.apache.tools.ant.types.FileSet;
 import org.apache.tools.ant.Project;
 
 import org.kohsuke.stapler.DataBoundConstructor;
-import org.kohsuke.stapler.DataBoundSetter;
 import org.xml.sax.SAXException;
 
 /**
@@ -66,9 +65,12 @@ public class ACIPluginPublisher extends Recorder {
 	 * Set the name of the publisher.
 	 * @param name
 	 * 		The name of the published report
+	 * @param shownOnProjectPage
+	 * 		Whether or not to display the report on the Project page
 	 */
 	@DataBoundConstructor
-       public ACIPluginPublisher(final String name, final boolean shownOnProjectPage) {
+       public ACIPluginPublisher(final String name,
+    		   final boolean shownOnProjectPage) {
 		this.name = name;
                this.shownOnProjectPage = shownOnProjectPage;
 	}
