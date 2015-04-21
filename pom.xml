@@ -9,7 +9,7 @@
   <groupId>org.jenkins-ci.plugins</groupId><!-- which version of Hudson is this plugin built against? -->
   <artifactId>summary_report</artifactId>
   <name>Summary Display Plugin</name>
-  <version>1.13-SNAPSHOT</version>
+  <version>1.13</version>
   <packaging>hpi</packaging>
   <description>Extend build and project page with extended results in XML format</description>
   <url>http://wiki.jenkins-ci.org/display/JENKINS/Summary+Display+Plugin</url>
@@ -80,7 +80,7 @@
     <connection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</connection>
     <developerConnection>scm:git:https://github.com/jenkinsci/summary_report-plugin.git</developerConnection>
     <url>https://github.com/jenkinsci/summary_report-plugin</url>
-    <tag>summary_report-1.12</tag>
+    <tag>summary_report-1.13</tag>
   </scm>
 
   <properties>
